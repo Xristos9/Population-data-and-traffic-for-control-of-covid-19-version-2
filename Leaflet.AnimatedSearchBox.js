@@ -22,7 +22,7 @@
 			expand: 'left',
 			collapsed: true,
 			width: null,
-			iconPath: 'search_icon.png',
+			iconPath: 'icons/search_icon.png',
 			autocompleteFeatures: ['setValueOnClick']
 		},
 
