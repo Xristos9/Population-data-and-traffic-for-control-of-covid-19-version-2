@@ -13,15 +13,14 @@
 	if (typeof window !== 'undefined' && window.L) {
 		window.L.YourPlugin = factory(L);
 	}
-}
-(function (L) {
+}(function (L) {
 	L.Control.Searchbox = L.Control.extend({
 		options: {
 			class: '',
 			id: '',
-			position: 'topcenter',
+			position: 'topright',
 			expand: 'left',
-			collapsed: false,
+			collapsed: true,
 			width: null,
 			iconPath: 'search_icon.png',
 			autocompleteFeatures: ['setValueOnClick']
@@ -249,7 +248,7 @@
 		_createAutocomplete: function () {
 			this._autocomplete = L.DomUtil.create(
 				'ul',
-				'leaflet-searchbox-autocomplete', 
+				'leaflet-searchbox-autocomplete',
 				this._container);
 
 			this._items = [];
