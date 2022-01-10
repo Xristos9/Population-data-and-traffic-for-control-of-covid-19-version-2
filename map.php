@@ -52,6 +52,7 @@
 		alert("Geolocation is not supported by this browser.")
 	}
 	
+	// arxikopoihsh icons
 	const icon1 = L.icon({
 		iconUrl: 'icons/icon1.png',
 		iconSize: [38, 38],
@@ -68,12 +69,13 @@
 		iconAnchor: [20, 0]
 	});
 
-	// eisagwgi tis topothesias to xristi
 	function showMarker(p) {
+		// eisagwgi tis topothesias to xristi
 		var userPosition = L.marker([p.coords.latitude, p.coords.longitude]).addTo(map)
 		userPosition.bindPopup("lat: " + p.coords.latitude + "<br>lng: " + p.coords.longitude);
 		map.setView([p.coords.latitude, p.coords.longitude], 13)
 
+		// eisagogi drop down menu
 		$.ajax({
 			url: 'mapSelect.php',
 			method: 'GET',
@@ -108,38 +110,21 @@
 					var estimation = p.value
 					console.log(store)
 					$.ajax({
-						url: 'mapInstert.php',
+						url: 'mapInsert.php',
 						method: 'POST',
 						// dataType: 'json',
 						data:{key: store,estimation: estimation},
 						success: function(data){
 							console.log(data)
-						},error: function (xhr, exception) {
-				var msg = "";
-				if (xhr.status === 0) {
-					msg = "Not connect.\n Verify Network." + xhr.responseText;
-				} else if (xhr.status == 404) {
-					msg = "Requested page not found. [404]" + xhr.responseText;
-				} else if (xhr.status == 500) {
-					msg = "Internal Server Error [500]." +  xhr.responseText;
-				} else if (exception === "parsererror") {
-					msg = "Requested JSON parse failed.";
-				} else if (exception === "timeout") {
-					msg = "Time out error." + xhr.responseText;
-				} else if (exception === "abort") {
-					msg = "Ajax request aborted.";
-				} else {
-					msg = "Error:" + xhr.status + " " + xhr.responseText;
-				}
-				console.log(msg)
-			}
+						}
 					})
 				}
 			}
 		})
-
+		// telos drop down menu
 	}
 
+	// arxi searchbar
 	const stores = $.ajax({
 		url: 'mapBack.php',
 		method: 'GET',
@@ -231,8 +216,9 @@
 			}, 600);
 		}
 	}
+	//telos searchbar
 	
-	
+	// euresi apostasis
 	function getDistance(lat1, lon1, lat2, lon2) {
 		var R = 6371; // Radius of the earth in km
 		var dLat = deg2rad(lat2 - lat1); // deg2rad below
