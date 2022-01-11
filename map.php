@@ -108,6 +108,10 @@
 					var p = document.getElementById("people");
 					var store = data[s.value]
 					var estimation = p.value
+					var marker = L.marker(L.latLng(data[s.value].lat, data[s.value].lng)).addTo(map)
+					marker.bindPopup("Name: '" + data[s.value].name + "'<br> Address: " + data[s.value].address);
+					map.setView([data[s.value].lat, data[s.value].lng], 20);
+					
 					console.log(store)
 					$.ajax({
 						url: 'mapInsert.php',
