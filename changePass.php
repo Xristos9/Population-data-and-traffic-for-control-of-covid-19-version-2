@@ -13,7 +13,7 @@ if(isset($_SESSION['User_id']) && isset($_SESSION['username'])){
 
 		if(mysqli_num_rows($result) === 1){
 			$result2 = mysqli_query($link,"UPDATE person SET Password='$new' WHERE User_id='$id'");
-            echo 0;
+			echo 0;
 		} else{
 			echo 1;
 			exit();

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
 	<!-- Navbar -->
 	<?php include "navbar.php"; ?>
 	<br><br>
-	
+
 		<!-- Showcase -->
 	<section
 		class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
@@ -56,7 +55,7 @@
 			og = new Date(result[0])
 			var future = new Date(og.getTime());
 			future.setDate(future.getDate()+14);
-			
+
 			if(declareDate == "Invalid Date"){
 				alert("Please input a date")
 			}else if(declareDate> currentDate){

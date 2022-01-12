@@ -25,7 +25,7 @@
 	<!-- Navbar -->
 	<?php include "adminNavbar.php"; ?>
 	<br><br>
-	
+
 		<!-- Showcase -->
 	<section
 		class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
@@ -46,7 +46,7 @@
 			</div><br>
 		</div>
 	</section>
-	
+
 	<div id="map"></div>
 
 		<!-- Footer -->

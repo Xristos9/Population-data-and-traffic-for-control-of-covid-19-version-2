@@ -7,7 +7,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['emai
 	$username = $_POST['username'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	
+
 	$result = mysqli_query($link, "SELECT * FROM person WHERE Username='$username'");
 	$result2 = mysqli_query($link, "SELECT * FROM person WHERE Email='$email'");
 
@@ -18,7 +18,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['emai
 		echo 1;
 		exit();
 	} else{
-		$result3 = mysqli_query($link, "INSERT INTO person(Username, Password, Email) VALUES('$username', '$password', '$email')"); 
+		$result3 = mysqli_query($link, "INSERT INTO person(Username, Password, Email) VALUES('$username', '$password', '$email')");
 
 		if($result3) {
 			echo 2;
@@ -28,7 +28,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['emai
 			exit();
 		}
 	}
-	
+
 } else {
 	echo 3;
 	exit();
