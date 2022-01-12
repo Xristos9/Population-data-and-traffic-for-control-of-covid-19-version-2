@@ -23,7 +23,7 @@
 
 <body>
 	<!-- Navbar -->
-	<?php include "navbar.php"; ?>
+	<?php include "adminNavbar.php"; ?>
 	<br><br>
 	
 		<!-- Showcase -->
