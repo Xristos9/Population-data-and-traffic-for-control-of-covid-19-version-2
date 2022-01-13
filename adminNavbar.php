@@ -3,6 +3,7 @@
 		rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
 	/>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
 	<div class="container">

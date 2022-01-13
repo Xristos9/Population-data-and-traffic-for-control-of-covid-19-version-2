@@ -23,7 +23,7 @@
 			<div class="container">
 			<div class="d-sm-flex align-items-center justify-content-between">
 				<div>
-				<h1>Hello, <span class="text-warning"><?php echo $_SESSION['username']; ?></span></h1>
+					<h1>Hello, <span class="text-warning"><?php echo $_SESSION['username']; ?></span></h1>
 				<br>
 				<button
 					class="btn btn-dark btn-lg"
@@ -39,7 +39,10 @@
 				>
 					Change Password
 				</button>
-			  </div>
+			</div>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<button class="btn btn-danger btn-lg ">Delete Everything</button>
+			</div>
 			</div><br>
 		  </div>
 		</section>

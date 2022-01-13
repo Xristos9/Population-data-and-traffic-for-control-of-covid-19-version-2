@@ -18,6 +18,7 @@
 		<form action="#">
 			<h1>Create Account</h1>
 			<div class="social-container">
+				<div id="signUpAlert"></div>
 			</div>
 			<div id="passwordHelpBlock" class="form-text">or use your email for registration</div>
 			<input class="form-control" type="text" placeholder="Name" id="Rname"/>
@@ -31,6 +32,7 @@
 		<form action="#">
 			<h1>Sign in</h1>
 			<div class="social-container">
+				<div id="signInAlert"></div>
 			</div>
 			<div id="passwordHelpBlock" class="form-text">or use your account</div>
 			<input class="form-control" type="email" placeholder="Email" id="Lemail"/>
@@ -56,6 +58,23 @@
 </div>
 
 <script>
+	var signInAlert = document.getElementById('signInAlert')
+	var signUpAlert = document.getElementById('signUpAlert')
+
+	function alert1(message, type) {
+		var wrapper = document.createElement('div')
+		wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible"role="alert">' + message + '<button type="button" class="btn-close"data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+		signInAlert.append(wrapper)
+	}
+
+	function alert2(message, type) {
+		var wrapper = document.createElement('div')
+		wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible"role="alert">' + message + '<button type="button" class="btn-close"data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+		signUpAlert.append(wrapper)
+	}
+
 	const signUpButton = document.getElementById('signUp');
 	const signInButton = document.getElementById('signIn');
 	const container = document.getElementById('container');
@@ -73,13 +92,10 @@
 		const password= document.getElementById("Lpassword").value;
 
 		if(email==''){
-			alert('Please enter your email.');
-			Lemail.focus();
-		}else if (ValidateEmail(email)){
-			alert('Invalid email');
+			alert1('Please enter your email!','danger');
 			Lemail.focus();
 		}else if(password==''){
-			alert('Please enter Password');
+			alert1('Please enter Password','danger');
 			Lpassword.focus();
 		}else{
 			const upload = $.ajax({
@@ -98,9 +114,9 @@
 			} else if(result == 1){
 				window.location.assign("adminMap.php")
 			}else if(result == 2){
-				alert('Incorrect username or password')
+				alert1('Incorrect username or password','danger')
 			}else{
-				alert('An unexpected error has occurred')
+				alert1('An unexpected error has occurred','danger')
 			}
 		}
 	}
@@ -125,31 +141,31 @@
 
 
 		if(email==''){
-			alert('Please enter your email');
+			alert2('Please enter your email','danger');
 			Remail.focus();
 		}else if (ValidateEmail(email)){
-			alert('Invalid email');
+			alert2('Invalid email','danger');
 			Remail.focus();
 		}else if(name==''){
-			alert('Please enter your Name.');
+			alert2('Please enter your Name.','danger');
 			Rname.focus();
 		}else if(password==''){
-			alert('Please enter Password');
+			alert2('Please enter Password','danger');
 			Rpassword.focus();
 		}else if(passwordC==''){
-			alert('Please Confirm Password');
+			alert2('Please Confirm Password','danger');
 			RpasswordC.focus();
 		}else if(!strongRegex.test(password)){
-			alert ('Upper case, Lower case, Special character and Numeric letter are required in Password');
+			alert2('Upper case, Lower case, Special character and Numeric letter are required in Password','danger');
 			Rpassword.focus();
 		}else if(password != passwordC){
-			alert ('Passwords do not Matched');
+			alert2('Passwords do not Matched','danger');
 			Rpassword.focus();
 		}else if(document.getElementById("RpasswordC").value.length < 8){
-			alert ('Password minimum length is 8');
+			alert2('Password minimum length is 8','danger');
 			Rpassword.focus();
 		}else if(document.getElementById("RpasswordC").value.length > 20){
-			alert ('Password max length is 20');
+			alert2('Password max length is 20','danger');
 			Rpassword.focus();
 		}else{
 			const upload = $.ajax({
@@ -166,14 +182,14 @@
 
 		function success(result){
 			if(result == 0){
-				alert('This username is used, try another one')
+				alert2('This username is used, try another one','danger')
 			} else if(result == 1){
-				alert('This email is used, try another one')
+				alert2('This email is used, try another one','danger')
 			}else if(result == 2){
-				alert('Account has been created successfully')
-				window.location.assign("index.html")
+				container.classList.remove("right-panel-active");
+				alert1('Account has been created successfully', 'success')
 			}else if(result == 3){
-				alert('An unexpected error has occurred')
+				alert2('An unexpected error has occurred','danger')
 			}
 		}
 	}

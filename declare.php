@@ -9,6 +9,7 @@
 	<title>Covid Declaration</title>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<!-- Navbar -->
@@ -82,13 +83,25 @@
 			future.setDate(future.getDate()+14);
 
 			if(declareDate == "Invalid Date"){
-				alert("Please input a date")
+				Swal.fire({
+					icon: 'error',
+					title: 'Please input a date!'
+				})
 			}else if(declareDate> currentDate){
-				alert('Please dont select future dates')
+				Swal.fire({
+					icon: 'error',
+					title: 'Please dont select future dates!'
+				})
 			} else if(declareDate<future && declareDate>=og){
-				alert('Please wait 14 days before you can declare again')
+				Swal.fire({
+					icon: 'error',
+					title: 'Please wait 14 days before you can declare again!'
+				})
 			} else if(declareDate<og){
-				alert('You have to choose a date thats after your last declaration')
+				Swal.fire({
+					icon: 'error',
+					title: 'You have to choose a date thats after your last declaration!'
+				})
 			}else{
 				var date = declareDate.getFullYear()+'-'+(declareDate.getMonth()+1)+'-'+declareDate.getDate();
 				// console.log(de_date)
