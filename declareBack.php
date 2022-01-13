@@ -3,14 +3,14 @@
 	session_start();
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		// $id = $_SESSION["User_id"];
+		$id = $_SESSION["User_id"];
 		$date = $_POST["date"];
 		$date = new Datetime($date);
 		$date = $date->format('Y-m-d');
 
 		// print_r($date1);
 
-		$sql = "INSERT INTO `cases`(`User_id`, `Date`) VALUES ('7','$date')";
+		$sql = "INSERT INTO `cases`(`User_id`, `Date`) VALUES ('$id','$date')";
 
 		if(mysqli_query($link, $sql)){
 			echo "Records inserted successfully.";

@@ -15,21 +15,46 @@
 	<?php include "navbar.php"; ?>
 	<br><br>
 
+	<div class="page-wrapper">
 		<!-- Showcase -->
-	<section
-		class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
-		<div class="container">
-			<div class="d-sm-flex align-items-center justify-content-between">
-				<div>
-				<label class="form-label">When did you test positive for covid?</label>
-				<input class="form-control" type="date" id="covidDate" min="2021-10-01" max="2022-12-31" required>
-				<br><br>
-				<button type="button" id="submit" class="btn btn-dark" onclick="onSubmit()">Submit</button>
+		<section
+			class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+			<div class="container">
+				<div class="d-sm-flex align-items-center justify-content-between">
+					<div>
+					<label class="form-label">When did you test positive for covid?</label>
+					<input class="form-control" type="date" id="covidDate" min="2021-10-01" max="2022-12-31" required>
+					<br><br>
+					<button type="button" id="submit" class="btn btn-dark" onclick="onSubmit()">Submit</button>
+					</div>
+				</div><br>
+			</div>
+		</section>
+
+		<section class="p-5">
+			<div class="container">
+				<div class="row text-center g-4">
+					<div class="col-md">
+						<div class="card bg-secondary text-light">
+							<div class="card-body text-center" id="k">
+								<h3 class="card-title mb-3">Your covid declaration dates are:</h3>  
+								<ul class="list-group" id="k"></ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="card bg-secondary text-light">
+							<div class="card-body text-center">
+								<h3 class="card-title mb-3">You visited these stores were there was a reported covid case:</h3>  
+								<ul class="list-group" id="j"></ul>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div><br>
-		</div>
-	</section>
-	<div class="page-wrapper"></div>
+			</div>
+		</section>
+
+	</div>
 
 		<!-- Footer -->
 	<?php include "footer.php";?>
@@ -78,6 +103,58 @@
 				});
 			}
 		}
+	}
+
+
+
+
+
+	const ajax =  $.ajax({
+		url: 'select2.php',
+		method: 'GET',
+		dataType: 'json',
+		success: function(data){
+			// console.log(data)
+		}
+	})
+
+	ajax.done(findDates)
+
+	function findDates(result){
+		var ul = document.getElementById("k");
+	
+		for (let key of result) {
+
+			let listItem = document.createElement("li");
+			listItem.textContent = key;
+			listItem.className = "list-group-item";
+			
+			ul.appendChild(listItem);
+		}
+	}
+	const ajax2 =  $.ajax({
+		url: 'select3.php',
+		method: 'GET',
+		dataType: 'json',
+		success: function(data){
+			// console.log(data)
+		}
+	})
+
+	ajax2.done(covid)
+
+	function covid(result){
+		var ul2 = document.getElementById("j");
+	
+		for (let key of result) {
+
+			var listItem = document.createElement("li");
+			listItem.textContent = key;
+			listItem.className = "list-group-item";
+			
+			ul2.appendChild(listItem);
+		}
+		
 	}
 </script>
 </body>

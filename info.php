@@ -5,8 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -16,32 +16,50 @@
 		<!-- Navbar -->
 	<?php include "navbar.php"; ?>
 	<br><br>
-	<section
-		class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
-	>
-		<div class="container">
-		<div class="d-sm-flex align-items-center justify-content-between">
-			<div>
-			<h1>Hello, <span class="text-warning"><?php echo $_SESSION['username']; ?></span></h1>
-			<br>
-			<button
-				class="btn btn-dark btn-lg"
-				data-bs-toggle="modal"
-				data-bs-target="#uname"
-			>
-				Change Username
-			</button>
-			<button
-				class="btn btn-dark btn-lg"
-				data-bs-toggle="modal"
-				data-bs-target="#pass"
-			>
-				Change Password
-			</button>
+	<div class="page-wrapper">
+		<section
+			class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+		>
+			<div class="container">
+			<div class="d-sm-flex align-items-center justify-content-between">
+				<div>
+				<h1>Hello, <span class="text-warning"><?php echo $_SESSION['username']; ?></span></h1>
+				<br>
+				<button
+					class="btn btn-dark btn-lg"
+					data-bs-toggle="modal"
+					data-bs-target="#uname"
+				>
+					Change Username
+				</button>
+				<button
+					class="btn btn-dark btn-lg"
+					data-bs-toggle="modal"
+					data-bs-target="#pass"
+				>
+					Change Password
+				</button>
+			  </div>
+			</div><br>
 		  </div>
-		</div><br>
-	  </div>
-	</section>
+		</section>
+	
+		<section class="p-5">
+			<div class="container">
+				<div class="row text-center g-4">
+					<div class="col-md">
+						<div class="card bg-secondary text-light">
+							<div class="card-body text-center" id="k">
+								<h3 class="card-title mb-3">You visited these stores:</h3>
+								<ul class="list-group" id="k"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>	
+		
+	</div>
 		<!-- Modal 1-->
 	<div
 		class="modal fade"
@@ -138,8 +156,7 @@
 	</div>
 	</div>
 
-	<div class="page-wrapper"></div>
-			<!-- Footer -->
+		<!-- Footer -->
 	<?php include "footer.php";?>
 
 	<script>
@@ -227,6 +244,54 @@
 			}
 		}
 	}
+
+window.onload = function kati(){
+
+	const ajax =  $.ajax({
+		url: 'select1.php',
+		method: 'GET',
+		dataType: 'json',
+		success: function(data){
+			// console.log(data)
+		},error: function (xhr, exception) {
+			var msg = "";
+			if (xhr.status === 0) {
+				msg = "Not connect.\n Verify Network." + xhr.responseText;
+			} else if (xhr.status == 404) {
+				msg = "Requested page not found. [404]" + xhr.responseText;
+			} else if (xhr.status == 500) {
+				msg = "Internal Server Error [500]." +  xhr.responseText;
+			} else if (exception === "parsererror") {
+				msg = "Requested JSON parse failed.";
+			} else if (exception === "timeout") {
+				msg = "Time out error." + xhr.responseText;
+			} else if (exception === "abort") {
+				msg = "Ajax request aborted.";
+			} else {
+				msg = "Error:" + xhr.status + " " + xhr.responseText;
+			}
+			console.log(msg)
+		}
+	})
+
+	ajax.done(episkepsi)
+
+	function episkepsi(result){
+		// console.log(result[0]['date'])
+		var ul = document.getElementById("k");
+		
+		for (let i in result) {
+			let visit = []
+			visit.push(result[i]['name'])
+			visit.push(result[i]['date'])
+			let listItem = document.createElement("li");
+			listItem.textContent = visit;
+			listItem.className = "list-group-item";
+			
+			ul.appendChild(listItem);
+		}
+	}
+}
 	</script>
 </body>
 </html>

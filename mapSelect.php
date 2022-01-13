@@ -3,7 +3,6 @@
 	session_start();
 
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
-		// $id = $_SESSION["userID"];
 
 		$query = mysqli_query($link, "SELECT `Store_id`,`Name`,`Address`,`lat`,`lng` FROM `stores` ORDER BY `stores`.`Store_id` ASC");
 		$array = array();

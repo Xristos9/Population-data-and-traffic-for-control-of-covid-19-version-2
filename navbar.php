@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
 	<div class="container">
-		<a class="navbar-brand">Covid-19 Pandemic</a>
+		<a href="map.php" class="navbar-brand">Covid-19 Pandemic</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
 		<span class="navbar-toggler-icon"></span>
 		</button>
