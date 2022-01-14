@@ -15,9 +15,34 @@
 	<!-- Navbar -->
 	<?php include "adminNavbar.php"; ?>
 	<br><br>
-
 	<div class="filler">
-		<canvas id="myChart" width="50" height="50"></canvas>
+		<section class="p-5">
+			<div class="container">
+				<div class="row text-center g-4">
+					<div class="col-md">
+						<div class="card bg-light text-light">
+							<div class="card-body text-center">
+								<canvas id="myChart" width="300" height="300"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="card bg-light text-light">
+							<div class="card-body text-center">
+								<canvas id="myChart2" width="300" height="300"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="card bg-light text-light">
+							<div class="card-body text-center">
+								<canvas id="myChart3" width="300" height="300"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 
 		<!-- Footer -->
@@ -27,11 +52,11 @@
 		window.onload = function graph(){
 
 			$.ajax({
-				url: 'select4.php',
+				url: 'select(a,b,c).php',
 				method: 'GET',
 				dataType: 'json',
 				success: function(data){
-					console.log(data)
+					// console.log(data)
 	
 					const ctx = document.getElementById('myChart').getContext('2d');
 					const myChart = new Chart(ctx, {
@@ -39,8 +64,8 @@
 						data: {
 							labels: ['# of Visits', '# of Covid Cases', '# of infectious visits'],
 							datasets: [{
-								// label: '# of Visits',
-								data: res,
+								label: 'a,b,c',
+								data: data,
 								backgroundColor: [
 									'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
@@ -55,12 +80,6 @@
 							}]
 						},
 						options: {
-							label:{
-								display: false
-							},
-							legend:{
-								display: false
-							},
 							scales: {
 								y: {
 									beginAtZero: true
@@ -71,6 +90,113 @@
 	
 				}
 			})
+			const ctx2 = document.getElementById('myChart2').getContext('2d');
+			const myChart2 = new Chart(ctx2, {
+				type: 'bar',
+				data: {
+					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+					datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+
+			const ctx3 = document.getElementById('myChart3').getContext('2d');
+			const myChart3 = new Chart(ctx3, {
+				type: 'bar',
+				data: {
+					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+					datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+
+			// const ctx4 = document.getElementById('myChart4').getContext('2d');
+			// const myChart4 = new Chart(ctx4, {
+			// 	type: 'bar',
+			// 	data: {
+			// 		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+			// 		datasets: [{
+			// 			label: '# of Votes',
+			// 			data: [12, 19, 3, 5, 2, 3],
+			// 			backgroundColor: [
+			// 				'rgba(255, 99, 132, 0.2)',
+			// 				'rgba(54, 162, 235, 0.2)',
+			// 				'rgba(255, 206, 86, 0.2)',
+			// 				'rgba(75, 192, 192, 0.2)',
+			// 				'rgba(153, 102, 255, 0.2)',
+			// 				'rgba(255, 159, 64, 0.2)'
+			// 			],
+			// 			borderColor: [
+			// 				'rgba(255, 99, 132, 1)',
+			// 				'rgba(54, 162, 235, 1)',
+			// 				'rgba(255, 206, 86, 1)',
+			// 				'rgba(75, 192, 192, 1)',
+			// 				'rgba(153, 102, 255, 1)',
+			// 				'rgba(255, 159, 64, 1)'
+			// 			],
+			// 			borderWidth: 1
+			// 		}]
+			// 	},
+			// 	options: {
+			// 		scales: {
+			// 			y: {
+			// 				beginAtZero: true
+			// 			}
+			// 		}
+			// 	}
+			// });
 		}
 	</script>
 </body>
