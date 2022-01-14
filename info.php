@@ -43,7 +43,7 @@
 			</div><br>
 		  </div>
 		</section>
-	
+
 		<section class="p-5">
 			<div class="container">
 				<div class="row text-center g-4">
@@ -57,8 +57,8 @@
 					</div>
 				</div>
 			</div>
-		</section>	
-		
+		</section>
+
 	</div>
 		<!-- Modal 1-->
 	<div
@@ -79,6 +79,7 @@
 						aria-label="Close"
 					></button>
 				</div>
+				<div id="changeUname"></div>
 				<div class="modal-body">
 					<form>
 						<div class="mb-3">
@@ -126,6 +127,7 @@
 						aria-label="Close"
 					></button>
 				</div>
+				<div id="changePass"></div>
 				<div class="modal-body">
 					<form>
 						<div class="mb-3">
@@ -160,138 +162,133 @@
 	<?php include "footer.php";?>
 
 	<script>
+
+		var changeUname = document.getElementById('changeUname')
+		var changePass = document.getElementById('changePass')
+
+		function alert1(message, type) {
+			var wrapper = document.createElement('div')
+			wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible"role="alert">' + message + '<button type="button" class="btn-close"data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+			changeUname.append(wrapper)
+		}
+
+		function alert2(message, type) {
+			var wrapper = document.createElement('div')
+			wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible"role="alert">' + message + '<button type="button" class="btn-close"data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+			changePass.append(wrapper)
+		}
+
 		function cName(){
-		const oldn= document.getElementById("ou").value;
-		const newn= document.getElementById("nu").value;
+			const oldn= document.getElementById("ou").value;
+			const newn= document.getElementById("nu").value;
 
-		if(oldn==''){
-			alert('Please enter your Old Username');
-			ou.focus()
-		}else if(newn==''){
-			alert('Please enter the new Username');
-			nu.focus()
-		}else if(newn == oldn){
-			alert ('Usernames should not match');
-			ou.focus()
-		}else{
-			console.log(1)
-			let upload = $.ajax({
-				url: 'changeUsername.php',
-				method: 'POST',
-				data: {oldUsername: oldn, newUsername: newn}
-				,
-				success: function(data) {
-					console.log(data)
-				}
-			});
-			upload.done(success);
-		}
-
-		function success(result){
-			if(result == 0){
-				alert('Your Username has been updated successfully')
-			}else if(result == 1){
-				alert('Incorrect Username')
+			if(oldn==''){
+				alert1('Please enter your Old Username','danger');
+				ou.focus()
+			}else if(newn==''){
+				alert1('Please enter the new Username','danger');
+				nu.focus()
+			}else if(newn == oldn){
+				alert1 ('Usernames should not match','danger');
+				ou.focus()
 			}else{
-				alert('An unexpected error has been occurred')
+				let upload = $.ajax({
+					url: 'changeUsername.php',
+					method: 'POST',
+					data: {oldUsername: oldn, newUsername: newn}
+					,
+					success: function(data) {
+						console.log(data)
+					}
+				});
+				upload.done(success);
 			}
-		}
-	}
 
-	function cPass(){
-		let old= document.getElementById("op").value;
-		let newp= document.getElementById("np").value;
-		let cnewp= document.getElementById("cnp").value;
-
-		let strongRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
-
-
-		if(old==''){
-			alert('Please enter your Old Password');
-		}else if(newp==''){
-			alert('Please enter the new Password');
-		}else if(cnewp==''){
-			alert('Please Confirm Password');
-		}else if(!strongRegex.test(newp)){
-			alert ('Upper case, Lower case, Special character and Numeric letter are required in Password');
-		}else if(newp != cnewp){
-			alert ('Passwords do not Matched');
-		}else if(newp < 8){
-			alert ('Password minimum length is 8');
-		}else if(newp > 20){
-			alert ('Password max length is 20');
-		}else{
-
-			let upload = $.ajax({
-				url: 'changePass.php',
-				method: 'POST',
-				data: {oldPassword: old, newPassword: newp}
-				,
-				success: function(data) {
-					console.log(data)
+			function success(result){
+				if(result == 0){
+					alert1('Your Username has been updated successfully','success')
+				}else if(result == 1){
+					alert1('Incorrect Username','danger')
+				}else{
+					alert1('An unexpected error has been occurred','danger')
 				}
-			});
-			upload.done(success);
-		}
-
-		function success(res){
-			if(res == 0){
-				alert('Your password has been updated successfully')
-			}else if(res == 1){
-				alert('Incorrect password')
-			}else {
-				alert('An unexpected error has been occurred')
 			}
 		}
-	}
 
-window.onload = function kati(){
+		function cPass(){
+			let old= document.getElementById("op").value;
+			let newp= document.getElementById("np").value;
+			let cnewp= document.getElementById("cnp").value;
 
-	const ajax =  $.ajax({
-		url: 'select1.php',
-		method: 'GET',
-		dataType: 'json',
-		success: function(data){
-			// console.log(data)
-		},error: function (xhr, exception) {
-			var msg = "";
-			if (xhr.status === 0) {
-				msg = "Not connect.\n Verify Network." + xhr.responseText;
-			} else if (xhr.status == 404) {
-				msg = "Requested page not found. [404]" + xhr.responseText;
-			} else if (xhr.status == 500) {
-				msg = "Internal Server Error [500]." +  xhr.responseText;
-			} else if (exception === "parsererror") {
-				msg = "Requested JSON parse failed.";
-			} else if (exception === "timeout") {
-				msg = "Time out error." + xhr.responseText;
-			} else if (exception === "abort") {
-				msg = "Ajax request aborted.";
-			} else {
-				msg = "Error:" + xhr.status + " " + xhr.responseText;
+			let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+
+			if(old==''){
+				alert2('Please enter your Old Password','danger');
+			}else if(newp==''){
+				alert2('Please enter the new Password','danger');
+			}else if(cnewp==''){
+				alert2('Please Confirm Password','danger');
+			}else if(!strongRegex.test(newp)){
+				alert2 ('Upper case, Lower case, Special character and Numeric letter are required in Password','danger');
+			}else if(newp != cnewp){
+				alert2 ('Passwords do not Matched','danger');
+			}else{
+
+				let upload = $.ajax({
+					url: 'changePass.php',
+					method: 'POST',
+					data: {oldPassword: old, newPassword: newp}
+					,
+					success: function(data) {
+						console.log(data)
+					}
+				});
+				upload.done(success);
 			}
-			console.log(msg)
-		}
-	})
 
-	ajax.done(episkepsi)
-
-	function episkepsi(result){
-		// console.log(result[0]['date'])
-		var ul = document.getElementById("k");
-		
-		for (let i in result) {
-			let visit = []
-			visit.push(result[i]['name'])
-			visit.push(result[i]['date'])
-			let listItem = document.createElement("li");
-			listItem.textContent = visit;
-			listItem.className = "list-group-item";
-			
-			ul.appendChild(listItem);
+			function success(res){
+				if(res == 0){
+					alert2('Your password has been updated successfully','success')
+				}else if(res == 1){
+					alert2('Incorrect password','danger')
+				}else {
+					alert2('An unexpected error has been occurred','danger')
+				}
+			}
 		}
-	}
-}
+
+		window.onload = function kati(){
+
+			const ajax =  $.ajax({
+				url: 'select1.php',
+				method: 'GET',
+				dataType: 'json',
+				success: function(data){
+					// console.log(data)
+				}
+			})
+
+			ajax.done(episkepsi)
+
+			function episkepsi(result){
+				// console.log(result[0]['date'])
+				var ul = document.getElementById("k");
+
+				for (let i in result) {
+					let visit = []
+					visit.push(result[i]['name'])
+					visit.push(result[i]['date'])
+					let listItem = document.createElement("li");
+					listItem.textContent = visit;
+					listItem.className = "list-group-item";
+
+					ul.appendChild(listItem);
+				}
+			}
+		}
 	</script>
 </body>
 </html>

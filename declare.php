@@ -38,7 +38,7 @@
 					<div class="col-md">
 						<div class="card bg-secondary text-light">
 							<div class="card-body text-center" id="k">
-								<h3 class="card-title mb-3">Your covid declaration dates are:</h3>  
+								<h3 class="card-title mb-3">Your covid declaration dates are:</h3>
 								<ul class="list-group" id="k"></ul>
 							</div>
 						</div>
@@ -46,7 +46,7 @@
 					<div class="col-md">
 						<div class="card bg-secondary text-light">
 							<div class="card-body text-center">
-								<h3 class="card-title mb-3">You visited these stores were there was a reported covid case:</h3>  
+								<h3 class="card-title mb-3">You visited these stores were there was a reported covid case:</h3>
 								<ul class="list-group" id="j"></ul>
 							</div>
 						</div>
@@ -111,7 +111,12 @@
 					data: { date: date },
 					success: function(data) {
 						console.log(data)
-						alert("Thank you")
+						Swal.fire({
+							icon: 'success',
+							title: 'Thank you!',
+							showConfirmButton: false,
+							timer: 1500
+						})
 					}
 				});
 			}
@@ -135,13 +140,13 @@
 
 	function findDates(result){
 		var ul = document.getElementById("k");
-	
+
 		for (let key of result) {
 
 			let listItem = document.createElement("li");
 			listItem.textContent = key;
 			listItem.className = "list-group-item";
-			
+
 			ul.appendChild(listItem);
 		}
 	}
@@ -158,16 +163,16 @@
 
 	function covid(result){
 		var ul2 = document.getElementById("j");
-	
+
 		for (let key of result) {
 
 			var listItem = document.createElement("li");
 			listItem.textContent = key;
 			listItem.className = "list-group-item";
-			
+
 			ul2.appendChild(listItem);
 		}
-		
+
 	}
 </script>
 </body>

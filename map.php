@@ -71,7 +71,10 @@
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showMarker);
 	} else {
-		alert("Geolocation is not supported by this browser.")
+		Swal.fire({
+			icon: 'error',
+			title: 'Geolocation is not supported by this browser!'
+		})
 	}
 
 	// arxikopoihsh icons
@@ -124,9 +127,15 @@
 					var s = document.getElementById("store");
 					var p = document.getElementById("people");
 					if(s.value == "Choose store"){
-						alert("Please select store")
+						Swal.fire({
+							icon: 'error',
+							title: 'Please select store!'
+						})
 					}else if(p.value == ""){
-						alert("How many people were at the store")
+						Swal.fire({
+							icon: 'error',
+							title: 'How many people were at the store?'
+						})
 					}else{
 						// console.log(p.value)
 						var store = data[s.value]
@@ -143,6 +152,14 @@
 							data:{key: store,estimation: estimation},
 							success: function(data){
 								console.log(data)
+								if(data == 'Records inserted successfully.'){
+									Swal.fire({
+										icon: 'success',
+										title: 'Your visit has been stored successfully!',
+										showConfirmButton: false,
+										timer: 2500
+									})
+								}
 							}
 						})
 					}

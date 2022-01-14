@@ -21,15 +21,13 @@
 		class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
 		<div class="container">
 			<div class="d-sm-flex align-items-center justify-content-between">
-				<div>
+				<div><br>
 				<div class="input-group">
 					<input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept=".json" onchange="readFile(this)">
 					<button class="btn btn-dark" type="button" id="inputGroupFileAddon04">Submit</button>
-				</div><br>
-				
-					<!-- <button type="button" id="submit" class="btn btn-dark" onclick=kati()>Submit</button> -->
+				</div><br><br>
 				</div>
-			</div><br>
+			</div>
 		</div>
 	</section>
 </div>
@@ -76,14 +74,14 @@
 					stuff.address = data[i].address
 					stuff.lat = data[i].coordinates.lat
 					stuff.lng = data[i].coordinates.lng
-					
+
 					stuff.types = data[i].types.toString()
-	
+
 					for (var j in data[i].populartimes){
 						stuff.day.push(data[i].populartimes[j].name)
 						stuff.data.push(data[i].populartimes[j].data)
 					}
-	
+
 					upload.push(stuff)
 
 				}
@@ -117,23 +115,6 @@
 			file.onerror = function() {
 				console.log(reader.error);
 			};
-		}
-
-
-		function onDelete(){
-			// console.log(1)
-			if(confirm("Are you sure that you want to nuke the server?")){
-
-				const ajax = $.ajax({
-					url: "delete.php",
-					type: "POST",
-					data: {kati:1},
-					success: function(data) {
-						console.log(data)
-						alert("Server nuked successfully")
-					}
-				})
-			}
 		}
 	</script>
 </body>

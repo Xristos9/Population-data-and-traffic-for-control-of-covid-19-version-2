@@ -82,13 +82,25 @@
 			future.setDate(future.getDate()+14);
 
 			if(declareDate == "Invalid Date"){
-				alert("Please input a date")
+				Swal.fire({
+					icon: 'error',
+					title: 'Please input a date!'
+				})
 			}else if(declareDate> currentDate){
-				alert('Please dont select future dates')
+				Swal.fire({
+					icon: 'error',
+					title: 'Please dont select future dates!'
+				})
 			} else if(declareDate<future && declareDate>=og){
-				alert('Please wait 14 days before you can declare again')
+				Swal.fire({
+					icon: 'error',
+					title: 'Please wait 14 days before you can declare again!'
+				})
 			} else if(declareDate<og){
-				alert('You have to choose a date thats after your last declaration')
+				Swal.fire({
+					icon: 'error',
+					title: 'You have to choose a date thats after your last declaration!'
+				})
 			}else{
 				var date = declareDate.getFullYear()+'-'+(declareDate.getMonth()+1)+'-'+declareDate.getDate();
 				// console.log(de_date)
@@ -98,7 +110,12 @@
 					data: { date: date },
 					success: function(data) {
 						console.log(data)
-						alert("Thank you")
+						Swal.fire({
+							icon: 'success',
+							title: 'Thank you!',
+							showConfirmButton: false,
+							timer: 1500
+						})
 					}
 				});
 			}
