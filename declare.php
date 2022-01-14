@@ -16,7 +16,7 @@
 	<?php include "navbar.php"; ?>
 	<br><br>
 
-	<div class="page-wrapper">
+	<div class="filler">
 		<!-- Showcase -->
 		<section
 			class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
