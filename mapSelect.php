@@ -11,7 +11,7 @@
 				array_push($array, array("id" => $row['Store_id'], "name" => $row['Name'],"address" => $row['Address'],"lat" => $row['lat'],"lng" => $row['lng'],));
 			}
 		}
-		// print_r($array);
+
 		echo json_encode($array,true);
 
 	}

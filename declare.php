@@ -43,14 +43,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md">
-						<div class="card bg-secondary text-light">
-							<div class="card-body text-center">
-								<h3 class="card-title mb-3">You visited these stores were there was a reported covid case:</h3>
-								<ul class="list-group" id="j"></ul>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -123,10 +115,6 @@
 		}
 	}
 
-
-
-
-
 	const ajax =  $.ajax({
 		url: 'select2.php',
 		method: 'GET',
@@ -149,30 +137,6 @@
 
 			ul.appendChild(listItem);
 		}
-	}
-	const ajax2 =  $.ajax({
-		url: 'select3.php',
-		method: 'GET',
-		dataType: 'json',
-		success: function(data){
-			// console.log(data)
-		}
-	})
-
-	ajax2.done(covid)
-
-	function covid(result){
-		var ul2 = document.getElementById("j");
-
-		for (let key of result) {
-
-			var listItem = document.createElement("li");
-			listItem.textContent = key;
-			listItem.className = "list-group-item";
-
-			ul2.appendChild(listItem);
-		}
-
 	}
 </script>
 </body>

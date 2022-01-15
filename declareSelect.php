@@ -13,7 +13,7 @@
 				array_push($dates,$row['Date']);
 			}
 		}
-		// print_r($dates);
+
 		echo json_encode($dates,true);
 	}
 

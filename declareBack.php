@@ -8,8 +8,6 @@
 		$date = new Datetime($date);
 		$date = $date->format('Y-m-d');
 
-		// print_r($date1);
-
 		$sql = "INSERT INTO `cases`(`User_id`, `Date`) VALUES ('$id','$date')";
 
 		if(mysqli_query($link, $sql)){

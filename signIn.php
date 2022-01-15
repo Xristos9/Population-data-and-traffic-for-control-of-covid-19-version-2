@@ -11,10 +11,9 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 
 	if(mysqli_num_rows($result) === 1) {
 		$row = mysqli_fetch_assoc($result);
-		$_SESSION['username'] = $row['Username'];
-		$_SESSION['email'] = $row['Email'];
-		$_SESSION['User_id'] = $row['User_id'];
 		$_SESSION['Admin'] = $row['Admin'];
+		$_SESSION['username'] = $row['Username'];
+		$_SESSION['User_id'] = $row['User_id'];
 
 		if($row['Admin']){
 			echo 1;

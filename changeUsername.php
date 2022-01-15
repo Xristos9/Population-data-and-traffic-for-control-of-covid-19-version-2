@@ -2,12 +2,12 @@
 include "connector.php";
 session_start();
 
+$id = $_SESSION['User_id'];
+
 if(isset($_SESSION['User_id']) && isset($_SESSION['username'])){
 
 	$old = $_POST['oldUsername'];
 	$new = $_POST['newUsername'];
-
-	$id = $_SESSION['User_id'];
 
 	$result = mysqli_query($link,"SELECT Username FROM person WHERE User_id=$id AND Username='$old'");
 

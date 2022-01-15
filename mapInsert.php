@@ -6,13 +6,13 @@
 
 		$id = $_SESSION["User_id"];
 
-		$k = $_POST["key"];
+		$visit = $_POST["key"];
 		$estimation = $_POST["estimation"];
-		$sid = $k["id"];
-		$name = $k["name"];
-		$address = $k["address"];
-		$lat = $k["lat"];
-		$lng = $k["lng"];
+		$sid = $visit["id"];
+		$name = $visit["name"];
+		$address = $visit["address"];
+		$lat = $visit["lat"];
+		$lng = $visit["lng"];
 
 		$sql = "INSERT INTO `visits`(`User_id`, `Store_id`, `Name`, `Address`, `lat`, `lng`, `Estimation`) VALUES ('$id','$sid','$name','$address','$lat','$lng','$estimation')";
 
