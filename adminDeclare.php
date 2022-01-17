@@ -45,7 +45,7 @@
 					<div class="col-md">
 						<div class="card bg-secondary text-light">
 							<div class="card-body text-center" id="k">
-								<h3 class="card-title mb-3">Your covid declaration dates are:</h3>
+								<h3 class="card-title mb-3">You visited these stores were there was a reported covid case:</h3>
 								<ul class="list-group" id="j"></ul>
 							</div>
 						</div>
@@ -164,9 +164,11 @@
 		var ul2 = document.getElementById("j");
 
 		for (let key of result) {
-
+			let visit = []
+			visit.push(key['Name'])
+			visit.push(key['date'])
 			var listItem = document.createElement("li");
-			listItem.textContent = key;
+			listItem.textContent = visit;
 			listItem.className = "list-group-item";
 
 			ul2.appendChild(listItem);
