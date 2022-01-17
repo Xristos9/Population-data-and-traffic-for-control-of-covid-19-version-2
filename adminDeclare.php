@@ -42,7 +42,14 @@
 							</div>
 						</div>
 					</div>
-					
+					<div class="col-md">
+						<div class="card bg-secondary text-light">
+							<div class="card-body text-center" id="k">
+								<h3 class="card-title mb-3">Your covid declaration dates are:</h3>
+								<ul class="list-group" id="j"></ul>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
