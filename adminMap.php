@@ -152,6 +152,18 @@
 							data:{key: store,estimation: estimation},
 							success: function(data){
 								console.log(data)
+								if(data == 'Records inserted successfully.'){
+									Swal.fire({
+										icon: 'success',
+										title: 'Your visit has been stored successfully!',
+										showConfirmButton: false,
+										timer: 2500
+									}).then(function(){
+										p.value=''
+										s.value='Choose store'
+									})
+								}
+
 							}
 						})
 					}

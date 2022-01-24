@@ -158,6 +158,9 @@
 										title: 'Your visit has been stored successfully!',
 										showConfirmButton: false,
 										timer: 2500
+									}).then(function(){
+										p.value=''
+										s.value='Choose store'
 									})
 								}
 							}

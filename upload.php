@@ -95,6 +95,7 @@
 					$.ajax({
 						url: "uploadInsert.php",
 						type: "POST",
+						// dataType: 'json',
 						data: {data:JSON.stringify(upload)},
 						success: function(data) {
 							console.log(data)
