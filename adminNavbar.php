@@ -25,9 +25,6 @@
 					<a href="upload.php" class="nav-link">Upload</a>
 				</li>
 				<li class="nav-item">
-					<a href="adminDeclare.php" class="nav-link">Declare Case</a>
-				</li>
-				<li class="nav-item">
 					<a href="charts.php" class="nav-link">Charts</a>
 				</li>
 				<li class="nav-item">

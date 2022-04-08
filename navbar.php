@@ -16,6 +16,9 @@
 					<a href="map.php" class="nav-link">Home</a>
 				</li>
 				<li class="nav-item">
+					<a href="visit.php" class="nav-link">What store did you visit</a>
+				</li>
+				<li class="nav-item">
 					<a href="declare.php" class="nav-link">Declare Case</a>
 				</li>
 				<li class="nav-item">
