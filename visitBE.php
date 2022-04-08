@@ -3,7 +3,7 @@
 	include "connector.php";
 	session_start();
 
-	$u = $_SESSION["userID"];
+	$u = $_SESSION["User_id"];
 	$k = $_POST["key"];
 	$lat = $k['lat'];
 	$lng = $k['lng'];

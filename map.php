@@ -27,7 +27,7 @@
 	<br><br>
 
 		<!-- Showcase -->
-	<section
+	<!-- <section
 		class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
 		<div class="container">
 			<div class="d-sm-flex align-items-center justify-content-between">
@@ -45,8 +45,8 @@
 				</div>
 			</div><br>
 		</div>
-	</section>
-
+	</section> -->
+<br>
 	<div id="map"></div>
 
 		<!-- Footer -->
@@ -100,75 +100,75 @@
 		userPosition.bindPopup("You are here");
 		map.setView([p.coords.latitude, p.coords.longitude], 13)
 
-		// eisagogi drop down menu
-		$.ajax({
-			url: 'mapSelect.php',
-			method: 'GET',
-			dataType: 'json',
-			success: function(data){
-				var values = [];
-				// console.log(data)
-				for(let i in data){
-					if (getDistance(p.coords.latitude, p.coords.longitude, data[i].lat, data[i].lng) <= 20000){
-						values.push(data[i].name)
-					}
-				}
+		// // eisagogi drop down menu
+		// $.ajax({
+		// 	url: 'mapSelect.php',
+		// 	method: 'GET',
+		// 	dataType: 'json',
+		// 	success: function(data){
+		// 		var values = [];
+		// 		// console.log(data)
+		// 		for(let i in data){
+		// 			if (getDistance(p.coords.latitude, p.coords.longitude, data[i].lat, data[i].lng) <= 20000){
+		// 				values.push(data[i].name)
+		// 			}
+		// 		}
 
-				for (let i in values){
-					var option = document.createElement("option");
-					option.value = i;
-					option.text = values[i].charAt(0) + values[i].slice(1);
-					document.getElementById("store").appendChild(option);
-				}
+		// 		for (let i in values){
+		// 			var option = document.createElement("option");
+		// 			option.value = i;
+		// 			option.text = values[i].charAt(0) + values[i].slice(1);
+		// 			document.getElementById("store").appendChild(option);
+		// 		}
 
-				// document.getElementById("container").appendChild(label).appendChild(select);
+		// 		// document.getElementById("container").appendChild(label).appendChild(select);
 
-				document.getElementById('submit').onclick = function(){
-					var s = document.getElementById("store");
-					var p = document.getElementById("people");
-					if(s.value == "Choose store"){
-						Swal.fire({
-							icon: 'error',
-							title: 'Please select store!'
-						})
-					}else if(p.value == ""){
-						Swal.fire({
-							icon: 'error',
-							title: 'How many people were at the store?'
-						})
-					}else{
-						// console.log(p.value)
-						var store = data[s.value]
-						var estimation = p.value
-						var marker = L.marker(L.latLng(data[s.value].lat, data[s.value].lng)).addTo(map)
-						marker.bindPopup("Name: '" + data[s.value].name + "'<br> Address: " + data[s.value].address)
-						map.setView([data[s.value].lat, data[s.value].lng], 20)
+		// 		document.getElementById('submit').onclick = function(){
+		// 			var s = document.getElementById("store");
+		// 			var p = document.getElementById("people");
+		// 			if(s.value == "Choose store"){
+		// 				Swal.fire({
+		// 					icon: 'error',
+		// 					title: 'Please select store!'
+		// 				})
+		// 			}else if(p.value == ""){
+		// 				Swal.fire({
+		// 					icon: 'error',
+		// 					title: 'How many people were at the store?'
+		// 				})
+		// 			}else{
+		// 				// console.log(p.value)
+		// 				var store = data[s.value]
+		// 				var estimation = p.value
+		// 				var marker = L.marker(L.latLng(data[s.value].lat, data[s.value].lng)).addTo(map)
+		// 				marker.bindPopup("Name: '" + data[s.value].name + "'<br> Address: " + data[s.value].address)
+		// 				map.setView([data[s.value].lat, data[s.value].lng], 20)
 
-						console.log(store)
-						$.ajax({
-							url: 'mapInsert.php',
-							method: 'POST',
-							// dataType: 'json',
-							data:{key: store,estimation: estimation},
-							success: function(data){
-								console.log(data)
-								if(data == 'Records inserted successfully.'){
-									Swal.fire({
-										icon: 'success',
-										title: 'Your visit has been stored successfully!',
-										showConfirmButton: false,
-										timer: 2500
-									}).then(function(){
-										p.value=''
-										s.value='Choose store'
-									})
-								}
-							}
-						})
-					}
-				}
-			}
-		})
+		// 				console.log(store)
+		// 				$.ajax({
+		// 					url: 'mapInsert.php',
+		// 					method: 'POST',
+		// 					// dataType: 'json',
+		// 					data:{key: store,estimation: estimation},
+		// 					success: function(data){
+		// 						console.log(data)
+		// 						if(data == 'Records inserted successfully.'){
+		// 							Swal.fire({
+		// 								icon: 'success',
+		// 								title: 'Your visit has been stored successfully!',
+		// 								showConfirmButton: false,
+		// 								timer: 2500
+		// 							}).then(function(){
+		// 								p.value=''
+		// 								s.value='Choose store'
+		// 							})
+		// 						}
+		// 					}
+		// 				})
+		// 			}
+		// 		}
+		// 	}
+		// })
 		// telos drop down menu
 	}
 

@@ -23,7 +23,7 @@
 			<div class="container">
 			<div class="d-sm-flex align-items-center justify-content-between">
 				<div>
-					<h1>Hello, <span class="text-warning"><?php echo $_SESSION['username']; ?></span></h1>
+				<h1>Hello, <span class="text-warning"><?php echo $_SESSION['username']; ?></span></h1>
 				<br>
 				<button
 					class="btn btn-dark btn-lg"
@@ -39,10 +39,7 @@
 				>
 					Change Password
 				</button>
-			</div>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button class="btn btn-danger btn-lg" onclick="empty()">Empty Server</button>
-			</div>
+			  </div>
 			</div><br>
 		  </div>
 		</section>
@@ -85,12 +82,6 @@
 				<div id="changeUname"></div>
 				<div class="modal-body">
 					<form>
-						<div class="mb-3">
-							<label for="first-name" class="col-form-label">
-								Old Usermame:
-							</label>
-							<input type="text" class="form-control" id="ou" />
-						</div>
 						<div class="mb-3">
 							<label for="last-name" class="col-form-label">New Usermame:</label>
 							<input type="text" class="form-control" id="nu" />
@@ -166,7 +157,7 @@
 
 	<script>
 
-var changeUname = document.getElementById('changeUname')
+		var changeUname = document.getElementById('changeUname')
 		var changePass = document.getElementById('changePass')
 
 		function alert1(message, type) {
@@ -184,23 +175,16 @@ var changeUname = document.getElementById('changeUname')
 		}
 
 		function cName(){
-			const oldn= document.getElementById("ou").value;
 			const newn= document.getElementById("nu").value;
 
-			if(oldn==''){
-				alert1('Please enter your Old Username','danger');
-				ou.focus()
-			}else if(newn==''){
+			if(newn==''){
 				alert1('Please enter the new Username','danger');
 				nu.focus()
-			}else if(newn == oldn){
-				alert1 ('Usernames should not match','danger');
-				ou.focus()
 			}else{
 				let upload = $.ajax({
 					url: 'changeUsername.php',
 					method: 'POST',
-					data: {oldUsername: oldn, newUsername: newn}
+					data: {newUsername: newn}
 					,
 					success: function(data) {
 						console.log(data)
@@ -212,8 +196,9 @@ var changeUname = document.getElementById('changeUname')
 			function success(result){
 				if(result == 0){
 					alert1('Your Username has been updated successfully','success')
-				}else if(result == 1){
-					alert1('Incorrect Username','danger')
+					$('#uname').on('hidden.bs.modal', function () {
+						window.location.reload();
+					})
 				}else{
 					alert1('An unexpected error has been occurred','danger')
 				}
@@ -291,44 +276,6 @@ var changeUname = document.getElementById('changeUname')
 					ul.appendChild(listItem);
 				}
 			}
-		}
-
-		function empty(){
-			Swal.fire({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!'
-			}).then((result) => {
-			if (result.isConfirmed) {
-				const ajax = $.ajax({
-					url: "delete.php",
-					type: "POST",
-					data: {boolval:1},
-					success: function(data) {
-						// console.log(data)
-						if(data== 11){
-							Swal.fire({
-								icon: 'success',
-								title: 'Deleted',
-								text: 'Your server has been nuked!',
-							})
-						}else if(data == 13 || data == 31 || data == 33 || data == 2){
-							Swal.fire({
-								icon: 'error',
-								title: 'Oops...',
-								text: 'Something went wrong!',
-							})
-						}
-					}
-				})
-			}
-			})
-
-
 		}
 	</script>
 </body>

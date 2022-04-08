@@ -2,7 +2,7 @@
 include "connector.php";
 
 session_start();
-$u = $_SESSION["userID"];
+$u = $_SESSION["User_id"];
 
 $query = mysqli_query($link, "SELECT `Store_id`,`Name`,`Address`,`lat`,`lng` FROM `stores`");
 $array = array();
