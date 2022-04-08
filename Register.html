@@ -5,8 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!--include jquery - use ajax -->
-	<script src="login.js"></script>
 	<link rel="stylesheet" type="text/css" href="login.css">
+	<script src="register.js"></script>
 	<title>SignIn_SignUp</title>
 </head>
 
@@ -15,25 +15,28 @@
 	<!-- Main div code -->
 	<div id="main">
 	<div class="h-tag">
-		<h2>Login</h2>
+		<h2>Create Your Account</h2>
 	</div>
 	<!-- create account div -->
 	<div class="login">
 		<table cellspacing="2" align="center" cellpadding="8" border="0">
 			<tr>
 			<td align="right">Enter Username:</td>
-			<td><input type="text" placeholder="Username" id="Username" class="tb" /></td>
+			<td><input type="text" placeholder="Username" id="t1" class="tb" /></td>
+			</tr>
+			<tr>
+			<td align="right">Enter Email:</td>
+			<td><input type="text" placeholder="Email" id="t2" class="tb" /></td>
 			</tr>
 			<tr>
 			<td align="right">Enter Password:</td>
-			<td><input type="password" placeholder="Password" id="Password" class="tb" /></td>
+			<td><input type="password" placeholder="Password" id="t3" class="tb" /></td>
 			</tr>
 			<tr>
 			<td></td>
 			<td>
-			<button class="uBt" onclick="login()">Login</button>
-			<p>Not a user? <a href="Register.html" class="ca"><b>Register Here</b></a></p>
-			<a href="https://www.youtube.com/watch?v=8CBjKLGwLqE" class="ca" target="_blank">Forgot your password?</a>
+			<button class="uBt" onclick="registration()" >Create Account</button>
+			<p>Already a user?  <a href="index.html" class="ca"><b>Log in</b></a></p>
 			</td>
 			</tr>
 		</table>
