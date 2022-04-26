@@ -45,7 +45,7 @@ window.onload = function() {
 		const ajax =  $.ajax({
 			url: 'visitSelect.php',
 			method: 'GET',
-			// dataType: 'json',
+			dataType: 'json',
 			success: function(data){
 				console.log(data)
 			},error: function (xhr, exception) {
