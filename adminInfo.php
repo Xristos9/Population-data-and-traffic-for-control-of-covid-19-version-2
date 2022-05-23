@@ -39,7 +39,10 @@
 				>
 					Change Password
 				</button>
-			  </div>
+				</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<button class="btn btn-danger btn-lg" onclick="empty()">Empty Server</button>
+				</div>
 			</div><br>
 		  </div>
 		</section>
@@ -276,6 +279,44 @@
 					ul.appendChild(listItem);
 				}
 			}
+		}
+		
+		function empty(){
+			Swal.fire({
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+			if (result.isConfirmed) {
+				const ajax = $.ajax({
+					url: "delete.php",
+					type: "POST",
+					data: {boolval:1},
+					success: function(data) {
+						// console.log(data)
+						if(data== 11){
+							Swal.fire({
+								icon: 'success',
+								title: 'Deleted',
+								text: 'Your server has been nuked!',
+							})
+						}else if(data == 13 || data == 31 || data == 33 || data == 2){
+							Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: 'Something went wrong!',
+							})
+						}
+					}
+				})
+			}
+			})
+
+
 		}
 	</script>
 </body>
